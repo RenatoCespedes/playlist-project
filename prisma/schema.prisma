@@ -35,6 +35,12 @@ model Song {
   published Boolean @default(false)
   
 }
+model playlist{
+  id      Int @id @default(autoincrement())
+  name    String
+  user_id User @relation(fields: [userId],references: [id])
+  songs   Song[] 
+}
 
 
 

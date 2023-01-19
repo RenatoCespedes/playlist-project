@@ -9,3 +9,32 @@ datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+model Song {
+  id Int @id @default(autoincrement())
+  name String
+  artist String
+  album String
+  year Int
+  genre String
+  duration Int
+  published Boolean @default(false)
+  
+}
+
+
+

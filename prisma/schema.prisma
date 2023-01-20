@@ -20,17 +20,10 @@ model User {
   date_born DateTime
   created_at DateTime @default(now())
   update_at DateTime @updatedAt
-  
+  playlist Playlist[]
+
+  @@map("users")
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -43,13 +36,18 @@ model Song {
   genre String
   duration Int
   published Boolean @default(false)
-  
+  playlist Playlist[]
+
+  @@map("songs")
 }
-model playlist{
-  id      Int @id @default(autoincrement())
+model Playlist{
+  id      Int    @id @default(autoincrement())
   name    String
-  user_id User @relation(fields: [userId],references: [id])
-  songs   Song[] 
+  userId  Int
+  songs   Song[]
+  person  User @relation(fields: [userId],references: [id])
+  
+  @@map("playlists")
 }
 
 

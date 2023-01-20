@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { findAll,createPlaylist } from "./controller";
 
-const userRouter: Router = Router();
+const playlist: Router = Router();
 
-userRouter.get("/", findAll);
-userRouter.post("/",createPlaylist);
+playlist.get("/", findAll);
+playlist.post("/",createPlaylist);
 
-export default userRouter;
+export default playlist;

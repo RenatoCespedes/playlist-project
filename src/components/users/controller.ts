@@ -40,3 +40,30 @@ export const findiduser = async (req:Request, res: Response): Promise<void> => {
         
     }
 }
+
+
+export const adduser= async(req:Request, res: Response): Promise<void> =>{
+    try {
+        const {name, email, password, last_sesion, date_born} = req.body;
+
+        await prisma.songs.create({
+            data:{
+                name: name,
+                email: email,
+                password: password,
+                last_sesion: last_sesion,
+                date_born: date_born, 
+                
+            }
+        });
+        res.status(201).json({
+            ok:true, message: "cancion creada correctamente"
+        });
+    
+    } catch (error) {
+        res.status(500).json({
+            ok:false,
+            message:error
+        });    
+    }
+}

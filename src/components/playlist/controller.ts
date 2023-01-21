@@ -44,3 +44,28 @@ export const createPlaylist= async(req:Request, res: Response): Promise<void> =>
       });    
   }
 }
+
+export const add=async(req:Request, res: Response): Promise<void> =>{
+  try {
+      const {id_playlist,id_song}=req.body;
+      console.log("body",id_playlist,id_song)
+      const dataupdate=await prisma.playlist.update({
+          where:{id:id_playlist},
+          data:{
+              songs:{
+                  connect:{id:id_song},
+              }
+          }
+      })
+      res.status(201).json({
+        ok:true, message: "update"
+    });
+      
+  } catch (error) {
+      res.status(500).json({
+          ok:false,
+          message:error
+      })
+      
+  }
+}

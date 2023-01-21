@@ -26,7 +26,7 @@ export const createPlaylist= async(req:Request, res: Response): Promise<void> =>
   try {
       const {name,songs,person } = req.body;
 
-      const nuevacancion= await prisma.playlists.create({
+      const nuevacancion= await prisma.playlist.create({
           data:{
             name:name,
             songs:songs,

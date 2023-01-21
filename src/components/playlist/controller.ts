@@ -24,15 +24,13 @@ export const findAll = async (_req: Request, res: Response): Promise<void> => {
 
 export const createPlaylist= async(req:Request, res: Response): Promise<void> =>{
   try {
-      const {id,name,userId,songs,person } = req.body;
+      const {name,songs,person } = req.body;
 
       const nuevacancion= await prisma.playlists.create({
           data:{
-            id:id,
             name:name,
-            userId:userId,
             songs:songs,
-            person:person
+            person:{ connect: { id: person } }
           }
       });
       res.status(201).json({

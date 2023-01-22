@@ -1,6 +1,6 @@
 import express, {type Application } from "express";
 import { userrouter, playlistRouter,songrouter } from "./components";
-
+import { hash } from "bcrypt";
 const app: Application = express();
 
 app.use(express.json());

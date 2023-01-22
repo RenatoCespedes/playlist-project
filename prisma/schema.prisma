@@ -16,7 +16,7 @@ model User {
   name String
   email String @unique
   password String
-  last_session DateTime
+  last_session DateTime?
   date_born DateTime
   created_at DateTime @default(now())
   update_at DateTime @updatedAt

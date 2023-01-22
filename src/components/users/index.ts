@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { findAllUsers, findiduser } from "./controller";
+import { findAllUsers, findiduser,adduser } from "./controller";
 
 const userrouter: Router = Router();
 
 userrouter.get("/", findAllUsers);
 userrouter.get("/:id", findiduser);
+userrouter.post("/", adduser);
 
 
 

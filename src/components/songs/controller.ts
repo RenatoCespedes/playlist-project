@@ -5,7 +5,7 @@ const prisma= new PrismaClient();
 
 export const findAll = async (_req: Request, res: Response): Promise<void> => {
     try {
-        const canciones= await prisma.songs.findMany();
+        const canciones= await prisma.song.findMany();
 
         res.status(200).json({
             ok:true,
@@ -22,11 +22,14 @@ export const findAll = async (_req: Request, res: Response): Promise<void> => {
 
 export const findbyid = async (req:Request, res: Response): Promise<void> => {
 
-    try { const id_song = req.params
-        const cancionbyid= await prisma.songs.findUnique({where: {
-        id: id_song,
+    try {
+        const {id} = req.params;
+        const cancionbyid= await prisma.song.findUnique({
+            where: {
+        id: Number(id),
                 },});
-
+        
+        console.log(cancionbyid);
         res.status(200).json({
             ok:true,
             data:cancionbyid,
@@ -46,7 +49,7 @@ export const creacion= async(req:Request, res: Response): Promise<void> =>{
     try {
         const {name, artist, album, year, genre, duration} = req.body;
 
-        const nuevacancion= await prisma.songs.create({
+        const nuevacancion= await prisma.song.create({
             data:{
                 name: name,
                 artist: artist,

@@ -22,11 +22,11 @@ export const findAllUsers = async (_req: Request, res: Response): Promise<void> 
 
 export const findiduser = async (req:Request, res: Response): Promise<void> => {
 
-    try { const id_user = req.params
-        const userid = await prisma.users.findUnique({where: {
-        id: id_user,
+    try { const {id} = req.params;
+        const userid = await prisma.user.findUnique({where: {
+        id: Number(id),
                 },});
-
+        console.log(userid);
         res.status(200).json({
             ok:true,
             data:userid ,
@@ -46,7 +46,7 @@ export const adduser= async(req:Request, res: Response): Promise<void> =>{
     try {
         const {name, email, password, last_sesion, date_born} = req.body;
 
-        await prisma.songs.create({
+        await prisma.user.create({
             data:{
                 name: name,
                 email: email,
@@ -57,7 +57,7 @@ export const adduser= async(req:Request, res: Response): Promise<void> =>{
             }
         });
         res.status(201).json({
-            ok:true, message: "cancion creada correctamente"
+            ok:true, message: "Usuario creado correctamente"
         });
     
     } catch (error) {

@@ -35,7 +35,7 @@ model Song {
   year Int
   genre String
   duration Int
-  published Boolean @default(false)
+  private_song Boolean @default(false)
   playlist Playlist[]
 
   @@map("songs")

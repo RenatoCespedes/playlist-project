@@ -35,7 +35,7 @@ export const findAll = async (_req: Request, res: Response): Promise<void> => {
 
         const canciones= await prisma.song.findMany({
             where : {
-                published: true                //publicas; cambiar nombre al campo
+                private_song: false                //publicas; cambiar nombre al campo
             }
         });
             if (canciones) {
@@ -97,7 +97,7 @@ export const findbyid = async (_req:Request, res: Response): Promise<void> => {
             id: Number(id),
                     },});
 
-            if (cancionbyid?.published === true) {
+            if (cancionbyid?.private_song === false) {
                 res.status(200).json({data:cancionbyid, message: "cancion publica sin token"})
             }
             else {
@@ -113,7 +113,7 @@ export const findbyid = async (_req:Request, res: Response): Promise<void> => {
 
 export const creacion= async(req:Request, res: Response): Promise<void> =>{
     try {
-        const {name, artist, album, year, genre, duration, published} = req.body;
+        const {name, artist, album, year, genre, duration, private_song} = req.body;
 
         const nuevacancion= await prisma.song.create({
             data:{
@@ -123,7 +123,7 @@ export const creacion= async(req:Request, res: Response): Promise<void> =>{
                 year: year,
                 genre: genre, 
                 duration: duration,
-                published : published
+                private_song : private_song
             }
         });
         res.status(201).json({

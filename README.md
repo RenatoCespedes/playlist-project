@@ -2,6 +2,6 @@
 
 # Integrantes:
 
-- 
-- 
-- 
+- Renato Cespedes
+- Kevin Sucapuca
+- Alfredo Alvarado
